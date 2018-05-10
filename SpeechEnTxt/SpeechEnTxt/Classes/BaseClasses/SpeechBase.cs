@@ -15,6 +15,8 @@ namespace SpeechEnTxt.Classes.BaseClasses
 
         private SpeechConfig sConfig;
 
+        public SpeechConfig Config { get { return sConfig; } }
+
         public SpeechBase()
         {
             ss = new SpeechSynthesizer();
@@ -30,11 +32,22 @@ namespace SpeechEnTxt.Classes.BaseClasses
             sConfig = Config;
             ss.SelectVoice(sConfig.VoiceName);
             ss.Rate = sConfig.Rate;
+            ss.Volume = sConfig.Volume;
         }
 
         public virtual void ReadLine(string Txt)
         {
             ss.Speak(Txt);
+        }
+
+        public virtual void Pause()
+        {
+            ss.Pause();
+        }
+
+        public virtual void Resume()
+        {
+            ss.Resume();
         }
 
         public virtual List<InstalledVoice> GetInstalledVoices()
