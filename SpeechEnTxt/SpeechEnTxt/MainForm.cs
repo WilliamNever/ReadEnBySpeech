@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpeechEnTxt.Classes.DomainClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Speech.Synthesis;
 
 namespace SpeechEnTxt
 {

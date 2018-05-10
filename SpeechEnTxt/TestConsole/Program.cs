@@ -28,7 +28,7 @@ namespace TestConsole
 I'd never given much thought to how I would die — though I'd had reason enough in the last few months — but even if I had, I would not have imagined it like this.
             ");
 
-            var voices = ss.GetInstalledVoices();
+            var voices = ss.GetInstalledVoices().ToList();
             foreach (var itm in voices)
             {
                 Console.WriteLine(itm.VoiceInfo.Name);
