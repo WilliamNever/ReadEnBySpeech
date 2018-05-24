@@ -29,7 +29,7 @@ namespace SpeechEnTxt.UserControls
 
         private void ControlBoard_Load(object sender, EventArgs e)
         {
-            cmbVoices.DataSource = VServcie.GetInstalledVoices()?
+            cmbVoices.DataSource = VServcie?.GetInstalledVoices()?
                 .Select(x => new { Name = x.VoiceInfo.Name }).ToList();
             cmbVoices.DisplayMember = "Name";
 
