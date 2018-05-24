@@ -100,6 +100,7 @@ namespace SpeechEnTxt.UserControls
                 }
 
                 SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "Save to File";
                 sfd.InitialDirectory = path;
                 sfd.OverwritePrompt = true;
                 sfd.FileName = fileName;
