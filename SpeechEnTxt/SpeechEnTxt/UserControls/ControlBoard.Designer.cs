@@ -35,9 +35,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbSpeed = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.tbVolume = new System.Windows.Forms.TrackBar();
+            this.lbVolume = new System.Windows.Forms.Label();
+            this.lblSpeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -53,6 +55,8 @@
             // 
             this.cmbVoices.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbVoices.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbVoices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVoices.FormattingEnabled = true;
             this.cmbVoices.Location = new System.Drawing.Point(58, 6);
             this.cmbVoices.Name = "cmbVoices";
@@ -97,8 +101,9 @@
             this.tbSpeed.Location = new System.Drawing.Point(58, 39);
             this.tbSpeed.Minimum = -10;
             this.tbSpeed.Name = "tbSpeed";
-            this.tbSpeed.Size = new System.Drawing.Size(326, 45);
+            this.tbSpeed.Size = new System.Drawing.Size(282, 45);
             this.tbSpeed.TabIndex = 5;
+            this.tbSpeed.Scroll += new System.EventHandler(this.tbSpeedAndVolume_Scroll);
             // 
             // label3
             // 
@@ -109,25 +114,54 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Volume:";
             // 
-            // trackBar1
+            // tbVolume
             // 
-            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar1.LargeChange = 10;
-            this.trackBar1.Location = new System.Drawing.Point(58, 83);
-            this.trackBar1.Maximum = 100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(326, 45);
-            this.trackBar1.TabIndex = 7;
-            this.trackBar1.TickFrequency = 10;
-            this.trackBar1.Value = 60;
+            this.tbVolume.LargeChange = 10;
+            this.tbVolume.Location = new System.Drawing.Point(58, 83);
+            this.tbVolume.Maximum = 100;
+            this.tbVolume.Name = "tbVolume";
+            this.tbVolume.Size = new System.Drawing.Size(282, 45);
+            this.tbVolume.TabIndex = 7;
+            this.tbVolume.TickFrequency = 10;
+            this.tbVolume.Value = 60;
+            this.tbVolume.Scroll += new System.EventHandler(this.tbSpeedAndVolume_Scroll);
+            // 
+            // lbVolume
+            // 
+            this.lbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbVolume.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lbVolume.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbVolume.Location = new System.Drawing.Point(341, 81);
+            this.lbVolume.Name = "lbVolume";
+            this.lbVolume.Padding = new System.Windows.Forms.Padding(5);
+            this.lbVolume.Size = new System.Drawing.Size(43, 26);
+            this.lbVolume.TabIndex = 9;
+            this.lbVolume.Text = "Vol";
+            this.lbVolume.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSpeed
+            // 
+            this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSpeed.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lblSpeed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSpeed.Location = new System.Drawing.Point(341, 36);
+            this.lblSpeed.Name = "lblSpeed";
+            this.lblSpeed.Padding = new System.Windows.Forms.Padding(5);
+            this.lblSpeed.Size = new System.Drawing.Size(43, 26);
+            this.lblSpeed.TabIndex = 10;
+            this.lblSpeed.Text = "Sp";
+            this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ControlBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.lblSpeed);
+            this.Controls.Add(this.lbVolume);
+            this.Controls.Add(this.tbVolume);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbSpeed);
             this.Controls.Add(this.label2);
@@ -137,8 +171,9 @@
             this.Controls.Add(this.label1);
             this.Name = "ControlBoard";
             this.Size = new System.Drawing.Size(396, 197);
+            this.Load += new System.EventHandler(this.ControlBoard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,6 +188,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TrackBar tbSpeed;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar tbVolume;
+        private System.Windows.Forms.Label lbVolume;
+        private System.Windows.Forms.Label lblSpeed;
     }
 }

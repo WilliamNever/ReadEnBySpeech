@@ -10,7 +10,7 @@ namespace SpeechEnTxt.Classes.DomainClasses
 {
     public class SpeechControls : SpeechBase
     {
-        public SpeechControls() : base()
+        public SpeechControls():base()
         {
 
         }
