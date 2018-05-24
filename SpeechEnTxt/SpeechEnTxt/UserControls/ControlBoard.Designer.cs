@@ -1,4 +1,4 @@
-﻿namespace SpeechEnTxt.Classes.DomainClasses
+﻿namespace SpeechEnTxt.UserControls
 {
     partial class ControlBoard
     {
@@ -51,16 +51,19 @@
             // 
             // cmbVoices
             // 
+            this.cmbVoices.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbVoices.FormattingEnabled = true;
             this.cmbVoices.Location = new System.Drawing.Point(58, 6);
             this.cmbVoices.Name = "cmbVoices";
-            this.cmbVoices.Size = new System.Drawing.Size(240, 21);
+            this.cmbVoices.Size = new System.Drawing.Size(257, 21);
             this.cmbVoices.TabIndex = 1;
             // 
             // cbkRead
             // 
+            this.cbkRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbkRead.AutoSize = true;
-            this.cbkRead.Location = new System.Drawing.Point(315, 8);
+            this.cbkRead.Location = new System.Drawing.Point(332, 8);
             this.cbkRead.Name = "cbkRead";
             this.cbkRead.Size = new System.Drawing.Size(52, 17);
             this.cbkRead.TabIndex = 2;
@@ -88,11 +91,13 @@
             // 
             // tbSpeed
             // 
+            this.tbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSpeed.LargeChange = 2;
             this.tbSpeed.Location = new System.Drawing.Point(58, 39);
             this.tbSpeed.Minimum = -10;
             this.tbSpeed.Name = "tbSpeed";
-            this.tbSpeed.Size = new System.Drawing.Size(309, 45);
+            this.tbSpeed.Size = new System.Drawing.Size(326, 45);
             this.tbSpeed.TabIndex = 5;
             // 
             // label3
@@ -106,11 +111,13 @@
             // 
             // trackBar1
             // 
+            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.trackBar1.LargeChange = 10;
             this.trackBar1.Location = new System.Drawing.Point(58, 83);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(309, 45);
+            this.trackBar1.Size = new System.Drawing.Size(326, 45);
             this.trackBar1.TabIndex = 7;
             this.trackBar1.TickFrequency = 10;
             this.trackBar1.Value = 60;
@@ -129,7 +136,7 @@
             this.Controls.Add(this.cmbVoices);
             this.Controls.Add(this.label1);
             this.Name = "ControlBoard";
-            this.Size = new System.Drawing.Size(379, 197);
+            this.Size = new System.Drawing.Size(396, 197);
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);

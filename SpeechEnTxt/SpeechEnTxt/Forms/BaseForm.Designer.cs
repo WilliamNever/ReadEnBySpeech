@@ -1,4 +1,4 @@
-﻿namespace SpeechEnTxt.Classes.BaseClasses
+﻿namespace SpeechEnTxt.Forms
 {
     partial class BaseForm
     {

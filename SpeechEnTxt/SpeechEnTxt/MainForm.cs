@@ -1,5 +1,5 @@
-﻿using SpeechEnTxt.Classes.BaseClasses;
-using SpeechEnTxt.Classes.DomainClasses;
+﻿using SpeechEnTxt.Classes;
+using SpeechEnTxt.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +14,11 @@ namespace SpeechEnTxt
 {
     public partial class frmMainForm : BaseForm
     {
+        private ServicesClass VoiceService;
         public frmMainForm()
         {
             InitializeComponent();
+            VoiceService = new Classes.ServicesClass(this);
         }
     }
 }
