@@ -8,5 +8,8 @@ namespace SpeechEnTxt.Classes.Params
 {
     public class ReadingContentPart
     {
+        public EnCurrentContent CurrentContentType { get; set; }
+        public string Text { get; set; }
+        public string FileFullName { get; set; }
     }
 }

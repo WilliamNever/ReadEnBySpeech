@@ -19,7 +19,7 @@ namespace SpeechEnTxt
         {
             InitializeComponent();
             VoiceService = new Classes.ServicesClass(this);
-            this.CtrBoard.SetVoiceServcie(VoiceService);
+            this.CtrBoard.SetVoiceServcie(VoiceService, this.rcReadingContents);
         }
     }
 }

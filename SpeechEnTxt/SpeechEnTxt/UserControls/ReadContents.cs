@@ -8,17 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SpeechEnTxt.Classes.Params;
+using SpeechEnTxt.Classes.Models;
 
 namespace SpeechEnTxt.UserControls
 {
-    public partial class ReadContents : UserControl
+    public partial class ReadContents : UserControl, IReadContent
     {
         public ReadContents()
         {
             InitializeComponent();
         }
 
-        public EnCurrentContent GetCurrentContentType
+        EnCurrentContent IReadContent.GetCurrentContentType
         {
             get
             {
@@ -36,10 +37,13 @@ namespace SpeechEnTxt.UserControls
             }
         }
 
-        public ReadingContentPart GetReadingPart()
+        ReadingContentPart IReadContent.GetReadingPart()
         {
-            ReadingContentPart rValue = new ReadingContentPart();
-            return rValue;
+            return new ReadingContentPart
+            {
+                CurrentContentType = ((IReadContent)this).GetCurrentContentType,
+                Text = this.txtInfors.Text
+            };
         }
     }
 }
