@@ -22,13 +22,15 @@ namespace TestConsole
             SpeechSynthesizer ss = new SpeechSynthesizer();
             ss.SelectVoice("Microsoft Zira Desktop");
             Console.WriteLine(ss.Voice.Name);
-            ss.Rate = 0;
+            ss.Rate = 0;//-10 - 10
+            ss.Volume = 80;//0 - 100
+            
             //ss.SetOutputToWaveFile("here.wav");
             ss.Speak(@"
-I'd never given much thought to how I would die — though I'd had reason enough in the last few months — but even if I had, I would not have imagined it like this.
+                monkey tiger kiwi
             ");
 
-            var voices = ss.GetInstalledVoices();
+            var voices = ss.GetInstalledVoices().ToList();
             foreach (var itm in voices)
             {
                 Console.WriteLine(itm.VoiceInfo.Name);
