@@ -173,6 +173,7 @@
             this.btnRead.TabIndex = 11;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
             // btnPause
             // 
@@ -191,6 +192,7 @@
             this.btnStop.TabIndex = 13;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // label4
             // 

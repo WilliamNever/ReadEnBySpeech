@@ -11,9 +11,9 @@ namespace SpeechEnTxt.Classes.BaseClasses
 {
     public abstract class SpeechBase
     {
-        private SpeechSynthesizer ss;
+        protected SpeechSynthesizer ss;
 
-        private SpeechConfig sConfig;
+        protected SpeechConfig sConfig;
 
         public SpeechConfig Config { get { return sConfig; } }
 
@@ -24,10 +24,11 @@ namespace SpeechEnTxt.Classes.BaseClasses
 
         public SpeechBase(SpeechConfig config):this()
         {
+            sConfig = config;
             SetSpeachInit(sConfig);
         }
 
-        public void SetSpeachInit(SpeechConfig Config)
+        public virtual void SetSpeachInit(SpeechConfig Config)
         {
             sConfig = Config;
             ss.SelectVoice(sConfig.VoiceName);
@@ -53,6 +54,11 @@ namespace SpeechEnTxt.Classes.BaseClasses
         public virtual List<InstalledVoice> GetInstalledVoices()
         {
             return ss.GetInstalledVoices()?.ToList();
+        }
+
+        public void Stop()
+        {
+            ss.SetOutputToNull();
         }
     }
 }

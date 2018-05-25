@@ -11,12 +11,15 @@ namespace SpeechEnTxt.Classes.Models
         public int Rate { get; set; }
         public string VoiceName { get; set; }
         public int Volume { get; set; }
+        public bool IsRead { get; set; }
         public bool IsRecordToFile { get; set; }
         public string RecordFilePath { get; set; }
+        public int WordInterval { get; internal set; }
 
         public SpeechConfig()
         {
             IsRecordToFile = false;
+            IsRead = true;
         }
     }
 }

@@ -8,23 +8,35 @@ using SpeechEnTxt.Classes.Models;
 
 namespace SpeechEnTxt.Classes.DomainClasses
 {
-    public class SpeechControls : SpeechBase
+    public class SpeechReadControls : SpeechBase
     {
-        public SpeechControls():base()
+        public SpeechReadControls():base()
         {
 
         }
-        public SpeechControls(SpeechConfig config) : base(config)
+        public SpeechReadControls(SpeechConfig config) : base(config)
+        {
+        }
+        public override void SetSpeachInit(SpeechConfig Config)
+        {
+            base.SetSpeachInit(Config);
+            ss.SetOutputToDefaultAudioDevice();
+        }
+    }
+
+    public class SpeechRecordControls : SpeechBase
+    {
+        public SpeechRecordControls():base()
+        {
+        }
+        public SpeechRecordControls(SpeechConfig config) : base(config)
         {
         }
 
-        public void ReadArtical(string txt)
+        public override void SetSpeachInit(SpeechConfig Config)
         {
-            var listTxt = txt.Split(new char[] { '\r', '\n' });
-            foreach (var str in listTxt)
-            {
-                ReadLine(str);
-            }
+            base.SetSpeachInit(Config);
+            ss.SetOutputToWaveFile(sConfig.RecordFilePath);
         }
     }
 }

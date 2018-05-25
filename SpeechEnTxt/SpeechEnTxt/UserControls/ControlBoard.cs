@@ -16,6 +16,7 @@ namespace SpeechEnTxt.UserControls
     {
         private ServicesClass VServcie;
         private IReadContent RContentClass;
+        private SpeechConfig config;
         public ControlBoard()
         {
             InitializeComponent();
@@ -52,6 +53,11 @@ namespace SpeechEnTxt.UserControls
             cmbVoices.DataSource = VServcie?.GetInstalledVoices()?
                 .Select(x => new { Name = x.VoiceInfo.Name }).ToList();
             cmbVoices.DisplayMember = "Name";
+            cmbVoices.ValueMember = "Name";
+            if (cmbVoices.Items.Count > 0)
+            {
+                cmbVoices.SelectedIndex = 0;
+            }
 
             ShowSpeed(this.tbSpeed);
             ShowVolume(this.tbVolume);
@@ -123,5 +129,31 @@ namespace SpeechEnTxt.UserControls
         }
 
         #endregion
+
+        private void btnRead_Click(object sender, EventArgs e)
+        {
+            int wordInterval;
+            if (!int.TryParse(txtInterval.Text, out wordInterval))
+            {
+                wordInterval = 0;
+            }
+            config = new SpeechConfig
+            {
+                IsRead = cbkRead.Checked,
+                IsRecordToFile = cbkRecord.Checked,
+                Rate = tbSpeed.Value,
+                RecordFilePath = lnkPath.Text,
+                VoiceName = cmbVoices.SelectedValue.ToString().Trim(),
+                Volume=tbVolume.Value,
+                WordInterval=wordInterval
+            };
+            this.VServcie.SetSpeachInit(config);
+            VServcie.Read(RContentClass);
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            VServcie.Stop();
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace TestConsole
         {
             TestToSound(args);
 
+            Console.WriteLine(Environment.NewLine);
+
             Console.WriteLine("Any key to exit......");
             Console.ReadKey();
         }
@@ -24,13 +26,13 @@ namespace TestConsole
             Console.WriteLine(ss.Voice.Name);
             ss.Rate = 0;//-10 - 10
             ss.Volume = 80;//0 - 100
-            
+            var voices = ss.GetInstalledVoices().ToList();
             //ss.SetOutputToWaveFile("here.wav");
             ss.Speak(@"
                 monkey tiger kiwi
             ");
 
-            var voices = ss.GetInstalledVoices().ToList();
+            
             foreach (var itm in voices)
             {
                 Console.WriteLine(itm.VoiceInfo.Name);
