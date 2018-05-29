@@ -31,8 +31,10 @@ namespace TestConsole
             ss.Speak(@"
                 monkey tiger kiwi
             ");
+            ss.Speak(@"
+                monkey tiger kiwi
+            ");
 
-            
             foreach (var itm in voices)
             {
                 Console.WriteLine(itm.VoiceInfo.Name);

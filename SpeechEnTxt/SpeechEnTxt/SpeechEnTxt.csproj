@@ -50,6 +50,7 @@
     <Compile Include="Classes\Models\ThreadTemplate.cs" />
     <Compile Include="Classes\Params\EnCurrentContent.cs" />
     <Compile Include="Classes\Params\ReadingContentPart.cs" />
+    <Compile Include="Classes\Params\ThrTempParam.cs" />
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>

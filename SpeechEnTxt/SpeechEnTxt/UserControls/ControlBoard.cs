@@ -17,6 +17,7 @@ namespace SpeechEnTxt.UserControls
         private ServicesClass VServcie;
         private IReadContent RContentClass;
         private SpeechConfig config;
+        private bool isPause = false;
         public ControlBoard()
         {
             InitializeComponent();
@@ -147,13 +148,19 @@ namespace SpeechEnTxt.UserControls
                 Volume=tbVolume.Value,
                 WordInterval=wordInterval
             };
-            this.VServcie.SetSpeachInit(config);
-            VServcie.Read(RContentClass);
+            //this.VServcie.SetSpeachInit(config);
+            VServcie.Read(RContentClass, config);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             VServcie.Stop();
+            isPause = false;
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            VServcie.PauseOrResume(isPause);
         }
     }
 }

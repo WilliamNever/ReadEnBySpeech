@@ -7,46 +7,40 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SpeechEnTxt.Classes.Models;
+using SpeechEnTxt.Classes.Params;
 
 namespace SpeechEnTxt.Classes
 {
     public class ServicesClass
     {
         private Form InvokeForm;
-        private SpeechReadControls spReadCtrl = null;
-        private SpeechRecordControls spRecordCtrl = null;
+        private SpeechReadControls spCtrl = null;
+        private ThreadTemplate thrRun = null;
         public ServicesClass(Form form)
         {
             InvokeForm = form;
-            spReadCtrl = new DomainClasses.SpeechReadControls();
+            spCtrl = new DomainClasses.SpeechReadControls();
         }
 
         public List<InstalledVoice> GetInstalledVoices()
         {
-            return spReadCtrl.GetInstalledVoices();
+            return spCtrl.GetInstalledVoices();
         }
 
-        public void SetSpeachInit(SpeechConfig config)
-        {
-            spReadCtrl = new SpeechReadControls(config);
-            if (config.IsRecordToFile)
-            {
-                //if (spRecordCtrl != null&&spRecordCtrl.Config.RecordFilePath.Equals(config.RecordFilePath))
-                //{
-                //    spRecordCtrl.Stop();
-                //}
-                spRecordCtrl = new DomainClasses.SpeechRecordControls(config);
-            }
-        }
-
-        public void Read(IReadContent rContentClass)
+        public void Read(IReadContent rContentClass, SpeechConfig config)
         {
             var readContents = rContentClass.GetReadingPart();
             switch (readContents.CurrentContentType)
             {
                 case Params.EnCurrentContent.Text:
-                    break;
                 case Params.EnCurrentContent.File:
+                    var tmpParam = new ThrTempParam
+                    {
+                        Config = config,
+                        ReadContent= readContents,
+                    };
+                    thrRun = new ThreadTemplate(tmpParam);
+                    thrRun.Read();
                     break;
                 case Params.EnCurrentContent.NotSelected:
                 default:
@@ -56,8 +50,18 @@ namespace SpeechEnTxt.Classes
 
         public void Stop()
         {
-            spReadCtrl.Stop();
-            spRecordCtrl.Stop();
+            if (thrRun != null)
+            {
+                thrRun.Stop();
+            }
+        }
+
+        public void PauseOrResume(bool isPause)
+        {
+            if (isPause)
+                thrRun.Pause();
+            else
+                thrRun.Resume();
         }
     }
 }
