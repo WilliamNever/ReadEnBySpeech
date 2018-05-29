@@ -14,12 +14,14 @@ namespace SpeechEnTxt.Classes.BaseClasses
         protected SpeechSynthesizer ss;
 
         protected SpeechConfig sConfig;
+        private bool HasDisposed;
 
         public SpeechConfig Config { get { return sConfig; } }
 
         public SpeechBase()
         {
             ss = new SpeechSynthesizer();
+            HasDisposed = false;
         }
 
         public SpeechBase(SpeechConfig config):this()
@@ -36,9 +38,9 @@ namespace SpeechEnTxt.Classes.BaseClasses
             ss.Volume = sConfig.Volume;
         }
 
-        public virtual void ReadLine(string Txt)
+        public virtual void Read(string Txt)
         {
-            ss.Speak(Txt);
+            ss.SpeakAsync(Txt);
         }
 
         public virtual void Pause()
@@ -56,9 +58,18 @@ namespace SpeechEnTxt.Classes.BaseClasses
             return ss.GetInstalledVoices()?.ToList();
         }
 
-        public void Stop()
+        public virtual void Stop()
         {
-            ss.SetOutputToNull();
+            ss.SpeakAsyncCancelAll();
+            ss.Dispose();
+            HasDisposed = true;
+        }
+        public void Exit()
+        {
+            if (!HasDisposed)
+            {
+                Stop();
+            }
         }
     }
 }

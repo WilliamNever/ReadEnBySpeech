@@ -42,12 +42,14 @@
             this.btnRead = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.ToolTipInfor = new System.Windows.Forms.ToolTip(this.components);
             this.lnkPath = new System.Windows.Forms.LinkLabel();
-            this.txtInterval = new System.Windows.Forms.TextBox();
+            this.rbtnWord = new System.Windows.Forms.RadioButton();
+            this.rbtnLine = new System.Windows.Forms.RadioButton();
+            this.grpReadMethod = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
+            this.grpReadMethod.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -167,7 +169,7 @@
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(12, 158);
+            this.btnRead.Location = new System.Drawing.Point(12, 164);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(75, 23);
             this.btnRead.TabIndex = 11;
@@ -177,7 +179,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(107, 158);
+            this.btnPause.Location = new System.Drawing.Point(107, 164);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 12;
@@ -187,24 +189,13 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(202, 158);
+            this.btnStop.Location = new System.Drawing.Point(202, 164);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 13;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(338, 163);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Tag = "";
-            this.label4.Text = "Word Interval:";
-            this.ToolTipInfor.SetToolTip(this.label4, "Millisecond=(1/1000)Second");
             // 
             // ToolTipInfor
             // 
@@ -215,30 +206,53 @@
             this.lnkPath.Enabled = false;
             this.lnkPath.Location = new System.Drawing.Point(77, 126);
             this.lnkPath.Name = "lnkPath";
-            this.lnkPath.Size = new System.Drawing.Size(411, 23);
+            this.lnkPath.Size = new System.Drawing.Size(268, 23);
             this.lnkPath.TabIndex = 16;
             this.lnkPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ToolTipInfor.SetToolTip(this.lnkPath, "The path of Saved File ");
             this.lnkPath.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkPath_LinkClicked);
             // 
-            // txtInterval
+            // rbtnWord
             // 
-            this.txtInterval.Location = new System.Drawing.Point(415, 159);
-            this.txtInterval.Name = "txtInterval";
-            this.txtInterval.Size = new System.Drawing.Size(73, 20);
-            this.txtInterval.TabIndex = 17;
-            this.txtInterval.Text = "0";
-            this.txtInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ToolTipInfor.SetToolTip(this.txtInterval, "Millisecond=(1/1000)Second");
+            this.rbtnWord.AutoSize = true;
+            this.rbtnWord.Location = new System.Drawing.Point(76, 30);
+            this.rbtnWord.Name = "rbtnWord";
+            this.rbtnWord.Size = new System.Drawing.Size(51, 17);
+            this.rbtnWord.TabIndex = 17;
+            this.rbtnWord.Text = "Word";
+            this.rbtnWord.UseVisualStyleBackColor = true;
+            // 
+            // rbtnLine
+            // 
+            this.rbtnLine.AutoSize = true;
+            this.rbtnLine.Checked = true;
+            this.rbtnLine.Location = new System.Drawing.Point(8, 30);
+            this.rbtnLine.Name = "rbtnLine";
+            this.rbtnLine.Size = new System.Drawing.Size(45, 17);
+            this.rbtnLine.TabIndex = 18;
+            this.rbtnLine.TabStop = true;
+            this.rbtnLine.Text = "Line";
+            this.rbtnLine.UseVisualStyleBackColor = true;
+            // 
+            // grpReadMethod
+            // 
+            this.grpReadMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpReadMethod.Controls.Add(this.rbtnLine);
+            this.grpReadMethod.Controls.Add(this.rbtnWord);
+            this.grpReadMethod.Location = new System.Drawing.Point(354, 131);
+            this.grpReadMethod.Name = "grpReadMethod";
+            this.grpReadMethod.Size = new System.Drawing.Size(134, 61);
+            this.grpReadMethod.TabIndex = 19;
+            this.grpReadMethod.TabStop = false;
+            this.grpReadMethod.Text = "Read Text By:";
             // 
             // ControlBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.txtInterval);
+            this.Controls.Add(this.grpReadMethod);
             this.Controls.Add(this.lnkPath);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnRead);
@@ -253,10 +267,12 @@
             this.Controls.Add(this.cmbVoices);
             this.Controls.Add(this.label1);
             this.Name = "ControlBoard";
-            this.Size = new System.Drawing.Size(500, 191);
+            this.Size = new System.Drawing.Size(500, 199);
             this.Load += new System.EventHandler(this.ControlBoard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();
+            this.grpReadMethod.ResumeLayout(false);
+            this.grpReadMethod.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,9 +293,10 @@
         private System.Windows.Forms.Button btnRead;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolTip ToolTipInfor;
         private System.Windows.Forms.LinkLabel lnkPath;
-        private System.Windows.Forms.TextBox txtInterval;
+        private System.Windows.Forms.RadioButton rbtnWord;
+        private System.Windows.Forms.RadioButton rbtnLine;
+        private System.Windows.Forms.GroupBox grpReadMethod;
     }
 }

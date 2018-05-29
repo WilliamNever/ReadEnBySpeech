@@ -36,7 +36,12 @@ namespace SpeechEnTxt.Classes.DomainClasses
         public override void SetSpeachInit(SpeechConfig Config)
         {
             base.SetSpeachInit(Config);
+            //ss.SetOutputToNull();
             ss.SetOutputToWaveFile(sConfig.RecordFilePath);
+        }
+        public override void Stop()
+        {
+            base.Stop();
         }
     }
 }

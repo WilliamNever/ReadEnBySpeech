@@ -27,6 +27,11 @@ namespace SpeechEnTxt.Classes
             return spCtrl.GetInstalledVoices();
         }
 
+        public void Exit()
+        {
+            thrRun?.Exit();
+        }
+
         public void Read(IReadContent rContentClass, SpeechConfig config)
         {
             var readContents = rContentClass.GetReadingPart();

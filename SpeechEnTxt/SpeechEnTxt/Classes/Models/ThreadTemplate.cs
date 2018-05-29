@@ -12,22 +12,23 @@ namespace SpeechEnTxt.Classes.Models
     public class ThreadTemplate
     {
         private ThrTempParam rrController;
-        private Thread ThrRead, ThrRecord;
+        private Thread ThrRead;
+        //, ThrRecord;
 
         private SpeechReadControls ReadControl;
         private SpeechRecordControls RecordControl;
 
-
-        private AutoResetEvent autoSet;
-        private bool IsPause, IsExistThread;
         public ThreadTemplate(ThrTempParam Controllers)
         {
             rrController = Controllers;
-            autoSet = new AutoResetEvent(false);
-            IsPause = false;
-            IsExistThread = false;
 
             SetSpeachInit(rrController.Config);
+        }
+
+        public void Exit()
+        {
+            ReadControl?.Exit();
+            RecordControl?.Exit();
         }
 
         private void SetSpeachInit(SpeechConfig config)
@@ -44,8 +45,6 @@ namespace SpeechEnTxt.Classes.Models
 
         public void Stop()
         {
-            IsExistThread = true;
-
             ReadControl?.Stop();
             RecordControl?.Stop();
         }
@@ -54,36 +53,58 @@ namespace SpeechEnTxt.Classes.Models
         {
             if (rrController.Config.IsRead)
             {
-
+                ThrRead = new Thread(new ThreadStart(ThrReadFunc));
+                ThrRead.Start();
             }
-            if (rrController.Config.IsRecordToFile)
-            {
-            }
+            //if (rrController.Config.IsRecordToFile)
+            //{
+            //    ThrRecord = new Thread(new ThreadStart(ThrRecordFunc));
+            //    ThrRecord.Start();
+            //}
         }
 
         public void ThrReadFunc()
-        { }
-        public void ThrRecordFunc()
-        { }
-
-        private void ReadArtical(string txt)
         {
-            var listTxt = txt.Split(Environment.NewLine.ToCharArray());     //(new char[] { '\r', '\n' });
-            foreach (var str in listTxt)
+            string[] words;
+            string txt;
+
+            switch (rrController.ReadContent.CurrentContentType)
             {
+                case EnCurrentContent.Text:
+                    txt = rrController.ReadContent.Text;
+                    if (rrController.Config.ReadByLine)
+                    {
+                        words = txt.Split(Environment.NewLine.ToCharArray());
+                    }
+                    else
+                    {
+                        words = txt.Split(' ');
+                    }
+                    foreach (var word in words)
+                    {
+                        if (rrController.Config.IsRead)
+                            ReadControl.Read(word);
+                        if (rrController.Config.IsRecordToFile)
+                            RecordControl.Read(word);
+                    }
+                    break;
+                case EnCurrentContent.File:
+                    break;
+                default:
+                    break;
             }
         }
+        //public void ThrRecordFunc()
+        //{
+        //}
 
         public void Pause()
         {
-            IsPause = true;
             ReadControl?.Pause();
         }
 
         public void Resume()
         {
-            IsPause = false;
-            autoSet.Set();
             ReadControl?.Resume();
         }
     }

@@ -133,11 +133,13 @@ namespace SpeechEnTxt.UserControls
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            int wordInterval;
-            if (!int.TryParse(txtInterval.Text, out wordInterval))
-            {
-                wordInterval = 0;
-            }
+            //btnStop_Click(sender, e);
+
+            //int wordInterval;
+            //if (!int.TryParse(txtInterval.Text, out wordInterval))
+            //{
+            //    wordInterval = 0;
+            //}
             config = new SpeechConfig
             {
                 IsRead = cbkRead.Checked,
@@ -145,8 +147,9 @@ namespace SpeechEnTxt.UserControls
                 Rate = tbSpeed.Value,
                 RecordFilePath = lnkPath.Text,
                 VoiceName = cmbVoices.SelectedValue.ToString().Trim(),
-                Volume=tbVolume.Value,
-                WordInterval=wordInterval
+                Volume = tbVolume.Value,
+                //WordInterval = wordInterval
+                ReadByLine = rbtnLine.Checked
             };
             //this.VServcie.SetSpeachInit(config);
             VServcie.Read(RContentClass, config);
@@ -160,6 +163,7 @@ namespace SpeechEnTxt.UserControls
 
         private void btnPause_Click(object sender, EventArgs e)
         {
+            isPause = !isPause;
             VServcie.PauseOrResume(isPause);
         }
     }

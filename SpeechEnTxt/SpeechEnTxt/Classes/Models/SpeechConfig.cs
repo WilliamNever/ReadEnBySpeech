@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SpeechEnTxt.Classes.Models
 {
@@ -14,7 +15,8 @@ namespace SpeechEnTxt.Classes.Models
         public bool IsRead { get; set; }
         public bool IsRecordToFile { get; set; }
         public string RecordFilePath { get; set; }
-        public int WordInterval { get; internal set; }
+        //public int WordInterval { get; set; }
+        public bool ReadByLine { get; set; }
 
         public SpeechConfig()
         {
