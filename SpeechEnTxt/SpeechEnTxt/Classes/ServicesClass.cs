@@ -67,9 +67,9 @@ namespace SpeechEnTxt.Classes
         public void PauseOrResume(bool isPause)
         {
             if (isPause)
-                thrRun.Pause();
+                thrRun?.Pause();
             else
-                thrRun.Resume();
+                thrRun?.Resume();
         }
         public void SetVolume(int volume)
         {

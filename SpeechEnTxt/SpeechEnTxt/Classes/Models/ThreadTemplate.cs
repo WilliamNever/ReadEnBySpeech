@@ -2,6 +2,7 @@
 using SpeechEnTxt.Classes.Params;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,10 +20,15 @@ namespace SpeechEnTxt.Classes.Models
 
         private bool IsBreakThread = false;
 
+        //private StreamReader sr;
+        //private FileStream fs;
+
         public ThreadTemplate(ThrTempParam Controllers)
         {
             rrController = Controllers;
-
+            //sr = null;
+            //fs = null;
+            
             SetSpeachInit(rrController.Config);
         }
 
@@ -83,6 +89,7 @@ namespace SpeechEnTxt.Classes.Models
             switch (rrController.ReadContent.CurrentContentType)
             {
                 case EnCurrentContent.Text:
+                    #region TEXT Part
                     txt = rrController.ReadContent.Text;
                     if (rrController.Config.ReadByLine)
                     {
@@ -98,8 +105,37 @@ namespace SpeechEnTxt.Classes.Models
                         if (IsBreakThread) break;
                     }
                     break;
+                #endregion
                 case EnCurrentContent.File:
+                    #region File Part
+                    using (var fs = new FileStream(rrController.ReadContent.FileFullName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        using (var sr = new StreamReader(fs))
+                        {
+                            txt = sr.ReadLine();
+                            while (txt != null)
+                            {
+                                if (rrController.Config.ReadByLine)
+                                {
+                                    words = txt.Split(Environment.NewLine.ToCharArray());
+                                }
+                                else
+                                {
+                                    words = txt.Split(' ');
+                                }
+                                if (IsBreakThread) break;
+                                foreach (var word in words)
+                                {
+                                    ReadControl.Read(word);
+                                    if (IsBreakThread) break;
+                                }
+                                if (IsBreakThread) break;
+                                txt = sr.ReadLine();
+                            }
+                        }
+                    }
                     break;
+                    #endregion
                 default:
                     break;
             }
@@ -112,6 +148,7 @@ namespace SpeechEnTxt.Classes.Models
             switch (rrController.ReadContent.CurrentContentType)
             {
                 case EnCurrentContent.Text:
+                    #region Text Part
                     txt = rrController.ReadContent.Text;
                     words = txt.Split(Environment.NewLine.ToCharArray());
                     foreach (var word in words)
@@ -121,8 +158,31 @@ namespace SpeechEnTxt.Classes.Models
                     }
                     OverRec();
                     break;
+                    #endregion
                 case EnCurrentContent.File:
+                    #region File Part
+                    using (var fs = new FileStream(rrController.ReadContent.FileFullName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        using (var sr = new StreamReader(fs))
+                        {
+                            txt = sr.ReadLine();
+                            while (txt != null)
+                            {
+                                words = txt.Split(Environment.NewLine.ToCharArray());
+                                if (IsBreakThread) break;
+                                foreach (var word in words)
+                                {
+                                    RecordControl.Read(word);
+                                    if (IsBreakThread) break;
+                                }
+                                if (IsBreakThread) break;
+                                txt = sr.ReadLine();
+                            }
+                        }
+                    }
+                    OverRec();
                     break;
+                    #endregion
                 default:
                     break;
             }

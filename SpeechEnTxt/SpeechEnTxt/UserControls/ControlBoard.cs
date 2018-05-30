@@ -145,6 +145,15 @@ namespace SpeechEnTxt.UserControls
                 Volume = tbVolume.Value,
                 ReadByLine = rbtnLine.Checked
             };
+            var rcc = RContentClass.GetReadingPart();
+            if (rcc.CurrentContentType == Classes.Params.EnCurrentContent.File
+                && string.IsNullOrEmpty(rcc.FileFullName?.Trim())
+                && !System.IO.File.Exists(rcc.FileFullName)
+                )
+            {
+                MessageBox.Show(this, "Error: File does not exist or file name is empty.");
+                return;
+            }
             VServcie.Read(RContentClass, config);
         }
 
