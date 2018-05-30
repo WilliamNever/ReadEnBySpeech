@@ -14,7 +14,7 @@ namespace SpeechEnTxt.Classes.BaseClasses
         protected SpeechSynthesizer ss;
 
         protected SpeechConfig sConfig;
-        private bool HasDisposed;
+        protected bool HasDisposed;
 
         public SpeechConfig Config { get { return sConfig; } }
 
@@ -60,17 +60,18 @@ namespace SpeechEnTxt.Classes.BaseClasses
 
         public virtual void Stop()
         {
-            ss.SpeakAsyncCancelAll();
-            ss.Dispose();
-            HasDisposed = true;
+            if (!HasDisposed)
+            {
+                ss.SpeakAsyncCancelAll();
+            }
         }
         public virtual void Exit()
         {
             if (!HasDisposed)
             {
-                HasDisposed = true;
                 Stop();
             }
         }
+        protected string ClassIDName;
     }
 }

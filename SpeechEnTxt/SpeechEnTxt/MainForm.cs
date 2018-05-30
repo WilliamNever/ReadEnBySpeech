@@ -15,7 +15,7 @@ namespace SpeechEnTxt
     public partial class frmMainForm : BaseForm
     {
         private ServicesClass VoiceService;
-        public frmMainForm()
+        public frmMainForm():base()
         {
             InitializeComponent();
             VoiceService = new Classes.ServicesClass(this);

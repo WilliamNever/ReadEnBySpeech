@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SpeechEnTxt.Classes.Models;
+using System.Windows.Forms;
+using SpeechEnTxt.Forms;
 
 namespace SpeechEnTxt.Classes.Params
 {
     public class ThrTempParam
     {
-        public SpeechConfig Config { get; internal set; }
-        public ReadingContentPart ReadContent { get; internal set; }
+        public SpeechConfig Config { get; set; }
+        public BaseForm InvokeForm { get; set; }
+        public ReadingContentPart ReadContent { get; set; }
     }
 }

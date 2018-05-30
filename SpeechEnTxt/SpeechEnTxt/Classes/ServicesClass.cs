@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SpeechEnTxt.Classes.Models;
 using SpeechEnTxt.Classes.Params;
+using SpeechEnTxt.Forms;
 
 namespace SpeechEnTxt.Classes
 {
     public class ServicesClass
     {
-        private Form InvokeForm;
+        private BaseForm InvokeForm;
         private SpeechReadControls spCtrl = null;
         private ThreadTemplate thrRun = null;
-        public ServicesClass(Form form)
+        public ServicesClass(BaseForm form)
         {
             InvokeForm = form;
             spCtrl = new DomainClasses.SpeechReadControls();
@@ -42,7 +43,8 @@ namespace SpeechEnTxt.Classes
                     var tmpParam = new ThrTempParam
                     {
                         Config = config,
-                        ReadContent= readContents,
+                        ReadContent = readContents,
+                        InvokeForm = InvokeForm,
                     };
                     thrRun = new ThreadTemplate(tmpParam);
                     thrRun.Read();

@@ -22,6 +22,8 @@ namespace SpeechEnTxt.Classes.DomainClasses
         }
         public override void SetSpeachInit(SpeechConfig Config)
         {
+            ClassIDName = "Read";
+
             base.SetSpeachInit(Config);
             ss.SetOutputToDefaultAudioDevice();
             AutoHandler = new AutoResetEvent(false);
@@ -46,11 +48,13 @@ namespace SpeechEnTxt.Classes.DomainClasses
         {
             AutoHandler?.Set();
             base.Exit();
+            ss.Dispose();
         }
     }
 
     public class SpeechRecordControls : SpeechBase
     {
+        protected AutoResetEvent AutoHandler = null;
         public SpeechRecordControls():base()
         {
         }
@@ -60,13 +64,26 @@ namespace SpeechEnTxt.Classes.DomainClasses
 
         public override void SetSpeachInit(SpeechConfig Config)
         {
+            ClassIDName = "Record";
             base.SetSpeachInit(Config);
-            //ss.SetOutputToNull();
             ss.SetOutputToWaveFile(sConfig.RecordFilePath);
+            AutoHandler = new AutoResetEvent(false);
+            ss.SpeakCompleted += new EventHandler<System.Speech.Synthesis.SpeakCompletedEventArgs>(FinishedEvent);
+        }
+        private void FinishedEvent(object sender, SpeakCompletedEventArgs e)
+        {
+            AutoHandler?.Set();
+        }
+        public override void Read(string Txt)
+        {
+            base.Read(Txt);
+            AutoHandler?.WaitOne();
         }
         public override void Stop()
         {
             base.Stop();
+            ss.Dispose();
+            HasDisposed = true;
         }
     }
 }
