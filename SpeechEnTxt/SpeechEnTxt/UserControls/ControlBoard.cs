@@ -38,11 +38,13 @@ namespace SpeechEnTxt.UserControls
         private void ShowVolume(TrackBar trackBar)
         {
             lbVolume.Text = $"{trackBar.Value}";
+            VServcie.SetVolume(trackBar.Value);
         }
 
         private void ShowSpeed(TrackBar trackBar)
         {
             lblSpeed.Text = $"{trackBar.Value}";
+            VServcie.SetRate(trackBar.Value);
         }
 
         #endregion
@@ -133,13 +135,6 @@ namespace SpeechEnTxt.UserControls
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            //btnStop_Click(sender, e);
-
-            //int wordInterval;
-            //if (!int.TryParse(txtInterval.Text, out wordInterval))
-            //{
-            //    wordInterval = 0;
-            //}
             config = new SpeechConfig
             {
                 IsRead = cbkRead.Checked,
@@ -148,10 +143,8 @@ namespace SpeechEnTxt.UserControls
                 RecordFilePath = lnkPath.Text,
                 VoiceName = cmbVoices.SelectedValue.ToString().Trim(),
                 Volume = tbVolume.Value,
-                //WordInterval = wordInterval
                 ReadByLine = rbtnLine.Checked
             };
-            //this.VServcie.SetSpeachInit(config);
             VServcie.Read(RContentClass, config);
         }
 

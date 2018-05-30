@@ -46,6 +46,7 @@ namespace SpeechEnTxt.Classes
                         ReadContent = readContents,
                         InvokeForm = InvokeForm,
                     };
+                    Exit();
                     thrRun = new ThreadTemplate(tmpParam);
                     thrRun.Read();
                     break;
@@ -69,6 +70,14 @@ namespace SpeechEnTxt.Classes
                 thrRun.Pause();
             else
                 thrRun.Resume();
+        }
+        public void SetVolume(int volume)
+        {
+            thrRun?.SetVolume(volume);
+        }
+        public void SetRate(int Rate)
+        {
+            thrRun?.SetRate(Rate);
         }
     }
 }

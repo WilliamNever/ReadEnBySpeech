@@ -138,6 +138,15 @@ namespace SpeechEnTxt.Classes.Models
             ReadControl?.Resume();
         }
 
+        public void SetVolume(int volume)
+        {
+            ReadControl?.SetVolume(volume);
+        }
+        public void SetRate(int Rate)
+        {
+            ReadControl?.SetRate(Rate);
+        }
+
         #region Test text
         private string Novel = @"
 

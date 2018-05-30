@@ -50,6 +50,15 @@ namespace SpeechEnTxt.Classes.DomainClasses
             base.Exit();
             ss.Dispose();
         }
+
+        public void SetVolume(int volume)
+        {
+            ss.Volume = volume;
+        }
+        public void SetRate(int Rate)
+        {
+            ss.Rate = Rate;
+        }
     }
 
     public class SpeechRecordControls : SpeechBase
