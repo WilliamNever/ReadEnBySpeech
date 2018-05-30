@@ -64,10 +64,11 @@ namespace SpeechEnTxt.Classes.BaseClasses
             ss.Dispose();
             HasDisposed = true;
         }
-        public void Exit()
+        public virtual void Exit()
         {
             if (!HasDisposed)
             {
+                HasDisposed = true;
                 Stop();
             }
         }

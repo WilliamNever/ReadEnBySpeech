@@ -18,6 +18,8 @@ namespace SpeechEnTxt.Classes.Models
         private SpeechReadControls ReadControl;
         private SpeechRecordControls RecordControl;
 
+        private bool IsBreakThread = false;
+
         public ThreadTemplate(ThrTempParam Controllers)
         {
             rrController = Controllers;
@@ -27,6 +29,7 @@ namespace SpeechEnTxt.Classes.Models
 
         public void Exit()
         {
+            IsBreakThread = true;
             ReadControl?.Exit();
             RecordControl?.Exit();
         }
@@ -45,12 +48,14 @@ namespace SpeechEnTxt.Classes.Models
 
         public void Stop()
         {
+            IsBreakThread = true;
             ReadControl?.Stop();
             RecordControl?.Stop();
         }
 
         public void Read()
         {
+            IsBreakThread = false;
             if (rrController.Config.IsRead)
             {
                 ThrRead = new Thread(new ThreadStart(ThrReadFunc));
@@ -82,10 +87,8 @@ namespace SpeechEnTxt.Classes.Models
                     }
                     foreach (var word in words)
                     {
-                        if (rrController.Config.IsRead)
-                            ReadControl.Read(word);
-                        if (rrController.Config.IsRecordToFile)
-                            RecordControl.Read(word);
+                        ReadControl.Read(word);
+                        if (IsBreakThread) break;
                     }
                     break;
                 case EnCurrentContent.File:
