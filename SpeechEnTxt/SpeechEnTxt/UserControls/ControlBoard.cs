@@ -16,6 +16,8 @@ namespace SpeechEnTxt.UserControls
     {
         private ServicesClass VServcie;
         private IReadContent RContentClass;
+        private SpeechConfig config;
+        private bool isPause = false;
         public ControlBoard()
         {
             InitializeComponent();
@@ -36,11 +38,13 @@ namespace SpeechEnTxt.UserControls
         private void ShowVolume(TrackBar trackBar)
         {
             lbVolume.Text = $"{trackBar.Value}";
+            VServcie.SetVolume(trackBar.Value);
         }
 
         private void ShowSpeed(TrackBar trackBar)
         {
             lblSpeed.Text = $"{trackBar.Value}";
+            VServcie.SetRate(trackBar.Value);
         }
 
         #endregion
@@ -52,6 +56,11 @@ namespace SpeechEnTxt.UserControls
             cmbVoices.DataSource = VServcie?.GetInstalledVoices()?
                 .Select(x => new { Name = x.VoiceInfo.Name }).ToList();
             cmbVoices.DisplayMember = "Name";
+            cmbVoices.ValueMember = "Name";
+            if (cmbVoices.Items.Count > 0)
+            {
+                cmbVoices.SelectedIndex = 0;
+            }
 
             ShowSpeed(this.tbSpeed);
             ShowVolume(this.tbVolume);
@@ -123,5 +132,41 @@ namespace SpeechEnTxt.UserControls
         }
 
         #endregion
+
+        private void btnRead_Click(object sender, EventArgs e)
+        {
+            config = new SpeechConfig
+            {
+                IsRead = cbkRead.Checked,
+                IsRecordToFile = cbkRecord.Checked,
+                Rate = tbSpeed.Value,
+                RecordFilePath = lnkPath.Text,
+                VoiceName = cmbVoices.SelectedValue.ToString().Trim(),
+                Volume = tbVolume.Value,
+                ReadByLine = rbtnLine.Checked
+            };
+            var rcc = RContentClass.GetReadingPart();
+            if (rcc.CurrentContentType == Classes.Params.EnCurrentContent.File
+                && string.IsNullOrEmpty(rcc.FileFullName?.Trim())
+                && !System.IO.File.Exists(rcc.FileFullName)
+                )
+            {
+                MessageBox.Show(this, "Error: File does not exist or file name is empty.");
+                return;
+            }
+            VServcie.Read(RContentClass, config);
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            VServcie.Stop();
+            isPause = false;
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            isPause = !isPause;
+            VServcie.PauseOrResume(isPause);
+        }
     }
 }

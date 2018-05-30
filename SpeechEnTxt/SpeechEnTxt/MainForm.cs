@@ -15,11 +15,16 @@ namespace SpeechEnTxt
     public partial class frmMainForm : BaseForm
     {
         private ServicesClass VoiceService;
-        public frmMainForm()
+        public frmMainForm():base()
         {
             InitializeComponent();
             VoiceService = new Classes.ServicesClass(this);
             this.CtrBoard.SetVoiceServcie(VoiceService, this.rcReadingContents);
+        }
+
+        private void frmMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            VoiceService.Exit();
         }
     }
 }

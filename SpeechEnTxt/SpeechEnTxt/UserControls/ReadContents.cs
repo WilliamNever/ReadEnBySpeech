@@ -42,8 +42,18 @@ namespace SpeechEnTxt.UserControls
             return new ReadingContentPart
             {
                 CurrentContentType = ((IReadContent)this).GetCurrentContentType,
-                Text = this.txtInfors.Text
+                Text = this.txtInfors.Text,
+                FileFullName = txtFilePath.Text
             };
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                txtFilePath.Text = opf.FileName;
+            }
         }
     }
 }

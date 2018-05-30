@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace SpeechEnTxt.Forms
 {
+    public delegate void ShowMessage(string msg);
     public partial class BaseForm : Form
     {
+        public ShowMessage PopupMessage;
         public BaseForm()
         {
             InitializeComponent();
+            PopupMessage = new ShowMessage(ShowMessageBox);
+        }
+
+        public void ShowMessageBox(string Msg)
+        {
+            MessageBox.Show(this, Msg);
         }
     }
 }
