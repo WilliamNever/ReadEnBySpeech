@@ -49,7 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rcReadingContents.Location = new System.Drawing.Point(12, 12);
             this.rcReadingContents.Name = "rcReadingContents";
-            this.rcReadingContents.Size = new System.Drawing.Size(512, 193);
+            this.rcReadingContents.Size = new System.Drawing.Size(510, 193);
             this.rcReadingContents.TabIndex = 1;
             // 
             // frmMainForm

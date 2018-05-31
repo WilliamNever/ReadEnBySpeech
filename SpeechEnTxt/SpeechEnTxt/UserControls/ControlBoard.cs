@@ -35,16 +35,16 @@ namespace SpeechEnTxt.UserControls
 
         #region Basic Function
 
-        private void ShowVolume(TrackBar trackBar)
+        private void ShowVolume(int num)
         {
-            lbVolume.Text = $"{trackBar.Value}";
-            VServcie.SetVolume(trackBar.Value);
+            lbVolume.Text = $"{num}";
+            VServcie?.SetVolume(num);
         }
 
-        private void ShowSpeed(TrackBar trackBar)
+        private void ShowSpeed(int num)
         {
-            lblSpeed.Text = $"{trackBar.Value}";
-            VServcie.SetRate(trackBar.Value);
+            lblSpeed.Text = $"{num}";
+            VServcie?.SetRate(num);
         }
 
         #endregion
@@ -62,8 +62,8 @@ namespace SpeechEnTxt.UserControls
                 cmbVoices.SelectedIndex = 0;
             }
 
-            ShowSpeed(this.tbSpeed);
-            ShowVolume(this.tbVolume);
+            ShowSpeed(tbSpeed.Value);
+            ShowVolume(tbVolume.Value);
             this.lnkPath.Enabled = false;
         }
 
@@ -74,11 +74,11 @@ namespace SpeechEnTxt.UserControls
             {
                 if (trackBar.Name.Equals("tbSpeed"))
                 {
-                    ShowSpeed(trackBar);
+                    ShowSpeed(trackBar.Value);
                 }
                 if (trackBar.Name.Equals("tbVolume"))
                 {
-                    ShowVolume(trackBar);
+                    ShowVolume(trackBar.Value);
                 }
             }
         }
