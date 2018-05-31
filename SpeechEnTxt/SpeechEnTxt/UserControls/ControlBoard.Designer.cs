@@ -47,15 +47,17 @@
             this.rbtnWord = new System.Windows.Forms.RadioButton();
             this.rbtnLine = new System.Windows.Forms.RadioButton();
             this.grpReadMethod = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
             this.grpReadMethod.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(14, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 0;
@@ -68,7 +70,7 @@
             this.cmbVoices.BackColor = System.Drawing.SystemColors.Window;
             this.cmbVoices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVoices.FormattingEnabled = true;
-            this.cmbVoices.Location = new System.Drawing.Point(58, 6);
+            this.cmbVoices.Location = new System.Drawing.Point(60, 6);
             this.cmbVoices.Name = "cmbVoices";
             this.cmbVoices.Size = new System.Drawing.Size(361, 21);
             this.cmbVoices.TabIndex = 1;
@@ -79,7 +81,7 @@
             this.cbkRead.AutoSize = true;
             this.cbkRead.Checked = true;
             this.cbkRead.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbkRead.Location = new System.Drawing.Point(436, 8);
+            this.cbkRead.Location = new System.Drawing.Point(438, 8);
             this.cbkRead.Name = "cbkRead";
             this.cbkRead.Size = new System.Drawing.Size(52, 17);
             this.cbkRead.TabIndex = 2;
@@ -89,7 +91,7 @@
             // cbkRecord
             // 
             this.cbkRecord.AutoSize = true;
-            this.cbkRecord.Location = new System.Drawing.Point(16, 131);
+            this.cbkRecord.Location = new System.Drawing.Point(18, 131);
             this.cbkRecord.Name = "cbkRecord";
             this.cbkRecord.Size = new System.Drawing.Size(61, 17);
             this.cbkRecord.TabIndex = 3;
@@ -100,7 +102,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 55);
+            this.label2.Location = new System.Drawing.Point(14, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 4;
@@ -111,7 +113,7 @@
             this.tbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSpeed.LargeChange = 2;
-            this.tbSpeed.Location = new System.Drawing.Point(58, 39);
+            this.tbSpeed.Location = new System.Drawing.Point(60, 39);
             this.tbSpeed.Minimum = -10;
             this.tbSpeed.Name = "tbSpeed";
             this.tbSpeed.Size = new System.Drawing.Size(386, 45);
@@ -121,7 +123,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 99);
+            this.label3.Location = new System.Drawing.Point(14, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 6;
@@ -132,7 +134,7 @@
             this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbVolume.LargeChange = 10;
-            this.tbVolume.Location = new System.Drawing.Point(58, 83);
+            this.tbVolume.Location = new System.Drawing.Point(60, 83);
             this.tbVolume.Maximum = 100;
             this.tbVolume.Name = "tbVolume";
             this.tbVolume.Size = new System.Drawing.Size(386, 45);
@@ -146,7 +148,7 @@
             this.lbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbVolume.BackColor = System.Drawing.SystemColors.HighlightText;
             this.lbVolume.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbVolume.Location = new System.Drawing.Point(445, 81);
+            this.lbVolume.Location = new System.Drawing.Point(447, 81);
             this.lbVolume.Name = "lbVolume";
             this.lbVolume.Padding = new System.Windows.Forms.Padding(5);
             this.lbVolume.Size = new System.Drawing.Size(43, 26);
@@ -159,7 +161,7 @@
             this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSpeed.BackColor = System.Drawing.SystemColors.HighlightText;
             this.lblSpeed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSpeed.Location = new System.Drawing.Point(445, 36);
+            this.lblSpeed.Location = new System.Drawing.Point(447, 36);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Padding = new System.Windows.Forms.Padding(5);
             this.lblSpeed.Size = new System.Drawing.Size(43, 26);
@@ -169,7 +171,8 @@
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(12, 164);
+            this.btnRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRead.Location = new System.Drawing.Point(14, 164);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(75, 23);
             this.btnRead.TabIndex = 11;
@@ -179,7 +182,8 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(107, 164);
+            this.btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPause.Location = new System.Drawing.Point(109, 164);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 12;
@@ -189,7 +193,8 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(202, 164);
+            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStop.Location = new System.Drawing.Point(204, 164);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 13;
@@ -203,8 +208,10 @@
             // 
             // lnkPath
             // 
+            this.lnkPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkPath.Enabled = false;
-            this.lnkPath.Location = new System.Drawing.Point(77, 126);
+            this.lnkPath.Location = new System.Drawing.Point(79, 126);
             this.lnkPath.Name = "lnkPath";
             this.lnkPath.Size = new System.Drawing.Size(268, 23);
             this.lnkPath.TabIndex = 16;
@@ -239,42 +246,52 @@
             this.grpReadMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.grpReadMethod.Controls.Add(this.rbtnLine);
             this.grpReadMethod.Controls.Add(this.rbtnWord);
-            this.grpReadMethod.Location = new System.Drawing.Point(354, 131);
+            this.grpReadMethod.Location = new System.Drawing.Point(356, 126);
             this.grpReadMethod.Name = "grpReadMethod";
             this.grpReadMethod.Size = new System.Drawing.Size(134, 61);
             this.grpReadMethod.TabIndex = 19;
             this.grpReadMethod.TabStop = false;
             this.grpReadMethod.Text = "Read Text By:";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.grpReadMethod);
+            this.panel1.Controls.Add(this.cmbVoices);
+            this.panel1.Controls.Add(this.lnkPath);
+            this.panel1.Controls.Add(this.cbkRead);
+            this.panel1.Controls.Add(this.btnStop);
+            this.panel1.Controls.Add(this.cbkRecord);
+            this.panel1.Controls.Add(this.btnPause);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnRead);
+            this.panel1.Controls.Add(this.tbSpeed);
+            this.panel1.Controls.Add(this.lblSpeed);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lbVolume);
+            this.panel1.Controls.Add(this.tbVolume);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(508, 198);
+            this.panel1.TabIndex = 20;
+            // 
             // ControlBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.grpReadMethod);
-            this.Controls.Add(this.lnkPath);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.btnPause);
-            this.Controls.Add(this.btnRead);
-            this.Controls.Add(this.lblSpeed);
-            this.Controls.Add(this.lbVolume);
-            this.Controls.Add(this.tbVolume);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.tbSpeed);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cbkRecord);
-            this.Controls.Add(this.cbkRead);
-            this.Controls.Add(this.cmbVoices);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel1);
             this.Name = "ControlBoard";
-            this.Size = new System.Drawing.Size(500, 199);
+            this.Size = new System.Drawing.Size(508, 198);
             this.Load += new System.EventHandler(this.ControlBoard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();
             this.grpReadMethod.ResumeLayout(false);
             this.grpReadMethod.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -298,5 +315,6 @@
         private System.Windows.Forms.RadioButton rbtnWord;
         private System.Windows.Forms.RadioButton rbtnLine;
         private System.Windows.Forms.GroupBox grpReadMethod;
+        private System.Windows.Forms.Panel panel1;
     }
 }
