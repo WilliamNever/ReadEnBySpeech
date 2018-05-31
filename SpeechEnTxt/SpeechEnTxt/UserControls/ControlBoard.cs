@@ -135,6 +135,9 @@ namespace SpeechEnTxt.UserControls
 
         private void btnRead_Click(object sender, EventArgs e)
         {
+            isPause = false;
+            SetPauseOrResumeName(isPause);
+
             config = new SpeechConfig
             {
                 IsRead = cbkRead.Checked,
@@ -146,9 +149,9 @@ namespace SpeechEnTxt.UserControls
                 ReadByLine = rbtnLine.Checked
             };
             var rcc = RContentClass.GetReadingPart();
-            if (rcc.CurrentContentType == Classes.Params.EnCurrentContent.File
-                && string.IsNullOrEmpty(rcc.FileFullName?.Trim())
-                && !System.IO.File.Exists(rcc.FileFullName)
+            if (
+                rcc.CurrentContentType == Classes.Params.EnCurrentContent.File
+                && (string.IsNullOrEmpty(rcc.FileFullName?.Trim()) || !System.IO.File.Exists(rcc.FileFullName))
                 )
             {
                 MessageBox.Show(this, "Error: File does not exist or file name is empty.");
@@ -161,12 +164,26 @@ namespace SpeechEnTxt.UserControls
         {
             VServcie.Stop();
             isPause = false;
+            SetPauseOrResumeName(isPause);
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
             isPause = !isPause;
+            SetPauseOrResumeName(isPause);
             VServcie.PauseOrResume(isPause);
+        }
+
+        private void SetPauseOrResumeName(bool IsPause)
+        {
+            if (IsPause)
+            {
+                btnPause.Text = "Resume";
+            }
+            else
+            {
+                btnPause.Text = "Pause";
+            }
         }
     }
 }
