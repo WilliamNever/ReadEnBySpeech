@@ -115,11 +115,8 @@ namespace SpeechEnTxt.Classes.Models
                             txt = sr.ReadLine();
                             while (txt != null)
                             {
-                                if (rrController.Config.ReadByLine)
-                                {
-                                    words = txt.Split(Environment.NewLine.ToCharArray());
-                                }
-                                else
+                                words = new string[] { txt };
+                                if (!rrController.Config.ReadByLine)
                                 {
                                     words = txt.Split(' ');
                                 }
@@ -150,7 +147,14 @@ namespace SpeechEnTxt.Classes.Models
                 case EnCurrentContent.Text:
                     #region Text Part
                     txt = rrController.ReadContent.Text;
-                    words = txt.Split(Environment.NewLine.ToCharArray());
+                    if (rrController.Config.ReadByLine)
+                    {
+                        words = txt.Split(Environment.NewLine.ToCharArray());
+                    }
+                    else
+                    {
+                        words = txt.Split(' ');
+                    }
                     foreach (var word in words)
                     {
                         RecordControl.Read(word);
@@ -168,7 +172,11 @@ namespace SpeechEnTxt.Classes.Models
                             txt = sr.ReadLine();
                             while (txt != null)
                             {
-                                words = txt.Split(Environment.NewLine.ToCharArray());
+                                words = new string[] { txt };
+                                if (!rrController.Config.ReadByLine)
+                                {
+                                    words = txt.Split(' ');
+                                }
                                 if (IsBreakThread) break;
                                 foreach (var word in words)
                                 {
