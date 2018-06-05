@@ -34,9 +34,9 @@ namespace SpeechEnTxt.Classes.DomainClasses
         {
             AutoHandler?.Set();
         }
-        public override void Read(string Txt)
+        public override void Read(PromptBuilder pmpt)
         {
-            base.Read(Txt);
+            base.Read(pmpt);
             AutoHandler?.WaitOne();
         }
         public override void Stop()
@@ -83,9 +83,9 @@ namespace SpeechEnTxt.Classes.DomainClasses
         {
             AutoHandler?.Set();
         }
-        public override void Read(string Txt)
+        public override void Read(PromptBuilder pmpt)
         {
-            base.Read(Txt);
+            base.Read(pmpt);
             AutoHandler?.WaitOne();
         }
         public override void Stop()

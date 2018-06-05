@@ -27,6 +27,10 @@ namespace SpeechEnTxt.Classes
         {
             return spCtrl.GetInstalledVoices();
         }
+        public List<PromptBreak> GetSpeechPauses()
+        {
+            return spCtrl.GetSpeechPauses();
+        }
 
         public void Exit()
         {

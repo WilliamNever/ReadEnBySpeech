@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -85,6 +86,7 @@ namespace SpeechEnTxt.Classes.Models
         {
             string[] words;
             string txt;
+            PromptBuilder pmpt;
 
             switch (rrController.ReadContent.CurrentContentType)
             {
@@ -101,7 +103,10 @@ namespace SpeechEnTxt.Classes.Models
                     }
                     foreach (var word in words)
                     {
-                        ReadControl.Read(word);
+                        pmpt = new PromptBuilder();
+                        pmpt.AppendText(word);
+                        pmpt = AddBreakPauseInEnd(pmpt);
+                        ReadControl.Read(pmpt);
                         if (IsBreakThread) break;
                     }
                     break;
@@ -115,18 +120,18 @@ namespace SpeechEnTxt.Classes.Models
                             txt = sr.ReadLine();
                             while (txt != null)
                             {
-                                if (rrController.Config.ReadByLine)
-                                {
-                                    words = txt.Split(Environment.NewLine.ToCharArray());
-                                }
-                                else
+                                words = new string[] { txt };
+                                if (!rrController.Config.ReadByLine)
                                 {
                                     words = txt.Split(' ');
                                 }
                                 if (IsBreakThread) break;
                                 foreach (var word in words)
                                 {
-                                    ReadControl.Read(word);
+                                    pmpt = new PromptBuilder();
+                                    pmpt.AppendText(word);
+                                    pmpt = AddBreakPauseInEnd(pmpt);
+                                    ReadControl.Read(pmpt);
                                     if (IsBreakThread) break;
                                 }
                                 if (IsBreakThread) break;
@@ -144,16 +149,27 @@ namespace SpeechEnTxt.Classes.Models
         {
             string[] words;
             string txt;
+            PromptBuilder pmpt;
 
             switch (rrController.ReadContent.CurrentContentType)
             {
                 case EnCurrentContent.Text:
                     #region Text Part
                     txt = rrController.ReadContent.Text;
-                    words = txt.Split(Environment.NewLine.ToCharArray());
+                    if (rrController.Config.ReadByLine)
+                    {
+                        words = txt.Split(Environment.NewLine.ToCharArray());
+                    }
+                    else
+                    {
+                        words = txt.Split(' ');
+                    }
                     foreach (var word in words)
                     {
-                        RecordControl.Read(word);
+                        pmpt = new PromptBuilder();
+                        pmpt.AppendText(word);
+                        pmpt = AddBreakPauseInEnd(pmpt);
+                        RecordControl.Read(pmpt);
                         if (IsBreakThread) break;
                     }
                     OverRec();
@@ -168,11 +184,18 @@ namespace SpeechEnTxt.Classes.Models
                             txt = sr.ReadLine();
                             while (txt != null)
                             {
-                                words = txt.Split(Environment.NewLine.ToCharArray());
+                                words = new string[] { txt };
+                                if (!rrController.Config.ReadByLine)
+                                {
+                                    words = txt.Split(' ');
+                                }
                                 if (IsBreakThread) break;
                                 foreach (var word in words)
                                 {
-                                    RecordControl.Read(word);
+                                    pmpt = new PromptBuilder();
+                                    pmpt.AppendText(word);
+                                    pmpt = AddBreakPauseInEnd(pmpt);
+                                    RecordControl.Read(pmpt);
                                     if (IsBreakThread) break;
                                 }
                                 if (IsBreakThread) break;
@@ -186,6 +209,18 @@ namespace SpeechEnTxt.Classes.Models
                 default:
                     break;
             }
+        }
+
+        private PromptBuilder AddBreakPauseInEnd(PromptBuilder pmpt)
+        {
+            if (rrController.Config.BreakType != PromptBreak.None && rrController.Config.PauseTimes > 0)
+            {
+                for (int i = 0; i < rrController.Config.PauseTimes; i++)
+                {
+                    pmpt.AppendBreak(rrController.Config.BreakType);
+                }
+            }
+            return pmpt;
         }
 
         public void Pause()

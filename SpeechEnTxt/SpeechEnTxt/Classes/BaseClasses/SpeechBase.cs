@@ -38,9 +38,9 @@ namespace SpeechEnTxt.Classes.BaseClasses
             ss.Volume = sConfig.Volume;
         }
 
-        public virtual void Read(string Txt)
+        public virtual void Read(PromptBuilder pmpt)
         {
-            ss.SpeakAsync(Txt);
+            ss.SpeakAsync(pmpt);
         }
 
         public virtual void Pause()
@@ -73,5 +73,11 @@ namespace SpeechEnTxt.Classes.BaseClasses
             }
         }
         protected string ClassIDName;
+
+        public List<PromptBreak> GetSpeechPauses()
+        {
+            var itValue = Enum.GetValues(typeof(PromptBreak)).OfType<PromptBreak>().ToList();
+            return itValue;
+        }
     }
 }
