@@ -65,6 +65,15 @@ namespace SpeechEnTxt.UserControls
             ShowSpeed(tbSpeed.Value);
             ShowVolume(tbVolume.Value);
             this.lnkPath.Enabled = false;
+
+            var PrmpBreaks = VServcie?.GetSpeechPauses();
+            cmbPauseType.DataSource = PrmpBreaks.Select(x => new { Name = x.ToString(), Value = x }).ToList();
+            cmbPauseType.DisplayMember = "Name";
+            cmbPauseType.ValueMember = "Value";
+            if (cmbPauseType.Items.Count > 0)
+            {
+                cmbPauseType.SelectedIndex = 0;
+            }
         }
 
         private void tbSpeedAndVolume_Scroll(object sender, EventArgs e)
@@ -138,6 +147,12 @@ namespace SpeechEnTxt.UserControls
             isPause = false;
             SetPauseOrResumeName(isPause);
 
+            int pauseTimes = 0;
+            if (!int.TryParse(txtPauseTimes.Text, out pauseTimes))
+            {
+                pauseTimes = 0;
+            }
+
             config = new SpeechConfig
             {
                 IsRead = cbkRead.Checked,
@@ -146,7 +161,9 @@ namespace SpeechEnTxt.UserControls
                 RecordFilePath = lnkPath.Text,
                 VoiceName = cmbVoices.SelectedValue.ToString().Trim(),
                 Volume = tbVolume.Value,
-                ReadByLine = rbtnLine.Checked
+                ReadByLine = rbtnLine.Checked,
+                BreakType = (System.Speech.Synthesis.PromptBreak)cmbPauseType.SelectedValue,
+                PauseTimes = pauseTimes,
             };
             var rcc = RContentClass.GetReadingPart();
             if (

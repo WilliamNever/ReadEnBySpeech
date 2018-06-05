@@ -48,10 +48,15 @@
             this.rbtnLine = new System.Windows.Forms.RadioButton();
             this.grpReadMethod = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.grpPauseType = new System.Windows.Forms.GroupBox();
+            this.cmbPauseType = new System.Windows.Forms.ComboBox();
+            this.txtPauseTimes = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
             this.grpReadMethod.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.grpPauseType.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -72,7 +77,7 @@
             this.cmbVoices.FormattingEnabled = true;
             this.cmbVoices.Location = new System.Drawing.Point(60, 6);
             this.cmbVoices.Name = "cmbVoices";
-            this.cmbVoices.Size = new System.Drawing.Size(361, 21);
+            this.cmbVoices.Size = new System.Drawing.Size(437, 21);
             this.cmbVoices.TabIndex = 1;
             // 
             // cbkRead
@@ -81,7 +86,7 @@
             this.cbkRead.AutoSize = true;
             this.cbkRead.Checked = true;
             this.cbkRead.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbkRead.Location = new System.Drawing.Point(438, 8);
+            this.cbkRead.Location = new System.Drawing.Point(514, 8);
             this.cbkRead.Name = "cbkRead";
             this.cbkRead.Size = new System.Drawing.Size(52, 17);
             this.cbkRead.TabIndex = 2;
@@ -91,7 +96,7 @@
             // cbkRecord
             // 
             this.cbkRecord.AutoSize = true;
-            this.cbkRecord.Location = new System.Drawing.Point(18, 131);
+            this.cbkRecord.Location = new System.Drawing.Point(18, 96);
             this.cbkRecord.Name = "cbkRecord";
             this.cbkRecord.Size = new System.Drawing.Size(61, 17);
             this.cbkRecord.TabIndex = 3;
@@ -110,20 +115,19 @@
             // 
             // tbSpeed
             // 
-            this.tbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSpeed.LargeChange = 2;
-            this.tbSpeed.Location = new System.Drawing.Point(60, 39);
+            this.tbSpeed.Location = new System.Drawing.Point(69, 39);
             this.tbSpeed.Minimum = -10;
             this.tbSpeed.Name = "tbSpeed";
-            this.tbSpeed.Size = new System.Drawing.Size(386, 45);
+            this.tbSpeed.Size = new System.Drawing.Size(147, 45);
             this.tbSpeed.TabIndex = 5;
             this.tbSpeed.Scroll += new System.EventHandler(this.tbSpeedAndVolume_Scroll);
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 99);
+            this.label3.Location = new System.Drawing.Point(287, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 6;
@@ -131,13 +135,12 @@
             // 
             // tbVolume
             // 
-            this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbVolume.LargeChange = 10;
-            this.tbVolume.Location = new System.Drawing.Point(60, 83);
+            this.tbVolume.Location = new System.Drawing.Point(346, 39);
             this.tbVolume.Maximum = 100;
             this.tbVolume.Name = "tbVolume";
-            this.tbVolume.Size = new System.Drawing.Size(386, 45);
+            this.tbVolume.Size = new System.Drawing.Size(162, 45);
             this.tbVolume.TabIndex = 7;
             this.tbVolume.TickFrequency = 10;
             this.tbVolume.Value = 60;
@@ -148,7 +151,7 @@
             this.lbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbVolume.BackColor = System.Drawing.SystemColors.HighlightText;
             this.lbVolume.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbVolume.Location = new System.Drawing.Point(447, 81);
+            this.lbVolume.Location = new System.Drawing.Point(522, 39);
             this.lbVolume.Name = "lbVolume";
             this.lbVolume.Padding = new System.Windows.Forms.Padding(5);
             this.lbVolume.Size = new System.Drawing.Size(43, 26);
@@ -158,10 +161,9 @@
             // 
             // lblSpeed
             // 
-            this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSpeed.BackColor = System.Drawing.SystemColors.HighlightText;
             this.lblSpeed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSpeed.Location = new System.Drawing.Point(447, 36);
+            this.lblSpeed.Location = new System.Drawing.Point(230, 39);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Padding = new System.Windows.Forms.Padding(5);
             this.lblSpeed.Size = new System.Drawing.Size(43, 26);
@@ -172,7 +174,7 @@
             // btnRead
             // 
             this.btnRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRead.Location = new System.Drawing.Point(14, 164);
+            this.btnRead.Location = new System.Drawing.Point(14, 179);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(75, 23);
             this.btnRead.TabIndex = 11;
@@ -183,7 +185,7 @@
             // btnPause
             // 
             this.btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPause.Location = new System.Drawing.Point(109, 164);
+            this.btnPause.Location = new System.Drawing.Point(104, 179);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 12;
@@ -194,7 +196,7 @@
             // btnStop
             // 
             this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnStop.Location = new System.Drawing.Point(204, 164);
+            this.btnStop.Location = new System.Drawing.Point(194, 179);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 13;
@@ -210,10 +212,11 @@
             // 
             this.lnkPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnkPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lnkPath.Enabled = false;
-            this.lnkPath.Location = new System.Drawing.Point(79, 126);
+            this.lnkPath.Location = new System.Drawing.Point(79, 91);
             this.lnkPath.Name = "lnkPath";
-            this.lnkPath.Size = new System.Drawing.Size(268, 23);
+            this.lnkPath.Size = new System.Drawing.Size(487, 23);
             this.lnkPath.TabIndex = 16;
             this.lnkPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ToolTipInfor.SetToolTip(this.lnkPath, "The path of Saved File ");
@@ -246,15 +249,16 @@
             this.grpReadMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.grpReadMethod.Controls.Add(this.rbtnLine);
             this.grpReadMethod.Controls.Add(this.rbtnWord);
-            this.grpReadMethod.Location = new System.Drawing.Point(356, 126);
+            this.grpReadMethod.Location = new System.Drawing.Point(284, 123);
             this.grpReadMethod.Name = "grpReadMethod";
-            this.grpReadMethod.Size = new System.Drawing.Size(134, 61);
+            this.grpReadMethod.Size = new System.Drawing.Size(134, 79);
             this.grpReadMethod.TabIndex = 19;
             this.grpReadMethod.TabStop = false;
             this.grpReadMethod.Text = "Read Text By:";
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.grpPauseType);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.grpReadMethod);
             this.panel1.Controls.Add(this.cmbVoices);
@@ -273,8 +277,49 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(508, 198);
+            this.panel1.Size = new System.Drawing.Size(584, 216);
             this.panel1.TabIndex = 20;
+            // 
+            // grpPauseType
+            // 
+            this.grpPauseType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpPauseType.Controls.Add(this.label4);
+            this.grpPauseType.Controls.Add(this.txtPauseTimes);
+            this.grpPauseType.Controls.Add(this.cmbPauseType);
+            this.grpPauseType.Location = new System.Drawing.Point(426, 123);
+            this.grpPauseType.Name = "grpPauseType";
+            this.grpPauseType.Size = new System.Drawing.Size(140, 79);
+            this.grpPauseType.TabIndex = 20;
+            this.grpPauseType.TabStop = false;
+            this.grpPauseType.Text = "Pause Type:";
+            // 
+            // cmbPauseType
+            // 
+            this.cmbPauseType.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbPauseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPauseType.FormattingEnabled = true;
+            this.cmbPauseType.Location = new System.Drawing.Point(6, 21);
+            this.cmbPauseType.Name = "cmbPauseType";
+            this.cmbPauseType.Size = new System.Drawing.Size(128, 21);
+            this.cmbPauseType.TabIndex = 0;
+            // 
+            // txtPauseTimes
+            // 
+            this.txtPauseTimes.Location = new System.Drawing.Point(81, 52);
+            this.txtPauseTimes.Name = "txtPauseTimes";
+            this.txtPauseTimes.Size = new System.Drawing.Size(53, 20);
+            this.txtPauseTimes.TabIndex = 1;
+            this.txtPauseTimes.Text = "0";
+            this.txtPauseTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Pause Times:";
             // 
             // ControlBoard
             // 
@@ -283,7 +328,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.panel1);
             this.Name = "ControlBoard";
-            this.Size = new System.Drawing.Size(508, 198);
+            this.Size = new System.Drawing.Size(584, 216);
             this.Load += new System.EventHandler(this.ControlBoard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();
@@ -291,6 +336,8 @@
             this.grpReadMethod.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.grpPauseType.ResumeLayout(false);
+            this.grpPauseType.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,5 +363,9 @@
         private System.Windows.Forms.RadioButton rbtnLine;
         private System.Windows.Forms.GroupBox grpReadMethod;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox grpPauseType;
+        private System.Windows.Forms.ComboBox cmbPauseType;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtPauseTimes;
     }
 }

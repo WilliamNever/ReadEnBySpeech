@@ -37,9 +37,9 @@
             this.CtrBoard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CtrBoard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CtrBoard.Location = new System.Drawing.Point(12, 211);
+            this.CtrBoard.Location = new System.Drawing.Point(12, 213);
             this.CtrBoard.Name = "CtrBoard";
-            this.CtrBoard.Size = new System.Drawing.Size(510, 204);
+            this.CtrBoard.Size = new System.Drawing.Size(580, 217);
             this.CtrBoard.TabIndex = 0;
             // 
             // rcReadingContents
@@ -49,14 +49,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rcReadingContents.Location = new System.Drawing.Point(12, 12);
             this.rcReadingContents.Name = "rcReadingContents";
-            this.rcReadingContents.Size = new System.Drawing.Size(510, 193);
+            this.rcReadingContents.Size = new System.Drawing.Size(580, 195);
             this.rcReadingContents.TabIndex = 1;
             // 
             // frmMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 427);
+            this.ClientSize = new System.Drawing.Size(604, 442);
             this.Controls.Add(this.rcReadingContents);
             this.Controls.Add(this.CtrBoard);
             this.Name = "frmMainForm";
