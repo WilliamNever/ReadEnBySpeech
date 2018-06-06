@@ -67,7 +67,7 @@ namespace SpeechEnTxt.UserControls
             this.lnkPath.Enabled = false;
 
             var PrmpBreaks = VServcie?.GetSpeechPauses();
-            cmbPauseType.DataSource = PrmpBreaks.Select(x => new { Name = x.ToString(), Value = x }).ToList();
+            cmbPauseType.DataSource = PrmpBreaks?.Select(x => new { Name = x.ToString(), Value = x }).ToList();
             cmbPauseType.DisplayMember = "Name";
             cmbPauseType.ValueMember = "Value";
             if (cmbPauseType.Items.Count > 0)

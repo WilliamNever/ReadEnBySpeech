@@ -55,5 +55,10 @@ namespace SpeechEnTxt.UserControls
                 txtFilePath.Text = opf.FileName;
             }
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtInfors.Text = "";
+        }
     }
 }
