@@ -55,5 +55,20 @@ namespace SpeechEnTxt.UserControls
                 txtFilePath.Text = opf.FileName;
             }
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtInfors.Text = "";
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            txtInfors.Text = @"
+                You can Use the tool with marked invoice in text, like this:
+                @@@1@@@Hello World!@@@0@@@Hello World!
+                Ps: the 0, 1 are the index in the voice list. the first index is 0.
+                If your list include more than 1 item. You can click read button to test.:)
+                ";
+        }
     }
 }

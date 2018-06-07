@@ -59,6 +59,7 @@
             this.ClientSize = new System.Drawing.Size(604, 442);
             this.Controls.Add(this.rcReadingContents);
             this.Controls.Add(this.CtrBoard);
+            this.MinimumSize = new System.Drawing.Size(620, 481);
             this.Name = "frmMainForm";
             this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainForm_FormClosing);

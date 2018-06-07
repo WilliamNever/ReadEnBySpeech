@@ -20,6 +20,7 @@ namespace SpeechEnTxt.Classes.Models
         public bool ReadByLine { get; set; }
         public PromptBreak BreakType { get; set; }
         public int PauseTimes { get; set; }
+        public List<string> VoiceAvailableList { get; set; }
 
         public SpeechConfig()
         {
