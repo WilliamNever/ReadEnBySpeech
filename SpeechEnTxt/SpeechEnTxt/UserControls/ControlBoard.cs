@@ -18,6 +18,7 @@ namespace SpeechEnTxt.UserControls
         private IReadContent RContentClass;
         private SpeechConfig config;
         private bool isPause = false;
+        private List<string> VoiceNameList = null;
         public ControlBoard()
         {
             InitializeComponent();
@@ -53,8 +54,10 @@ namespace SpeechEnTxt.UserControls
 
         private void ControlBoard_Load(object sender, EventArgs e)
         {
-            cmbVoices.DataSource = VServcie?.GetInstalledVoices()?
-                .Select(x => new { Name = x.VoiceInfo.Name }).ToList();
+            VoiceNameList = VServcie?.GetInstalledVoices()?.Select(x => x.VoiceInfo.Name).ToList();
+            cmbVoices.DataSource = VoiceNameList?.Select(x => new { Name = x }).ToList();
+                //VServcie?.GetInstalledVoices()?
+                //.Select(x => new { Name = x.VoiceInfo.Name }).ToList();
             cmbVoices.DisplayMember = "Name";
             cmbVoices.ValueMember = "Name";
             if (cmbVoices.Items.Count > 0)
@@ -164,6 +167,7 @@ namespace SpeechEnTxt.UserControls
                 ReadByLine = rbtnLine.Checked,
                 BreakType = (System.Speech.Synthesis.PromptBreak)cmbPauseType.SelectedValue,
                 PauseTimes = pauseTimes,
+                VoiceAvailableList = VoiceNameList,
             };
             var rcc = RContentClass.GetReadingPart();
             if (

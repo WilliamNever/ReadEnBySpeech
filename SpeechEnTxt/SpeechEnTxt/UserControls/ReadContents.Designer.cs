@@ -30,13 +30,14 @@
         {
             this.tabReadContents = new System.Windows.Forms.TabControl();
             this.tpWords = new System.Windows.Forms.TabPage();
+            this.btnClear = new System.Windows.Forms.Button();
             this.txtInfors = new System.Windows.Forms.TextBox();
             this.tpFile = new System.Windows.Forms.TabPage();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnClear = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.tabReadContents.SuspendLayout();
             this.tpWords.SuspendLayout();
             this.tpFile.SuspendLayout();
@@ -58,6 +59,7 @@
             // 
             // tpWords
             // 
+            this.tpWords.Controls.Add(this.btnHelp);
             this.tpWords.Controls.Add(this.btnClear);
             this.tpWords.Controls.Add(this.txtInfors);
             this.tpWords.Location = new System.Drawing.Point(4, 22);
@@ -67,6 +69,17 @@
             this.tpWords.TabIndex = 0;
             this.tpWords.Text = "ReadWords";
             this.tpWords.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClear.Location = new System.Drawing.Point(3, 189);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 1;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtInfors
             // 
@@ -132,16 +145,16 @@
             this.panel1.Size = new System.Drawing.Size(450, 250);
             this.panel1.TabIndex = 3;
             // 
-            // btnClear
+            // btnHelp
             // 
-            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClear.Location = new System.Drawing.Point(3, 189);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 1;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHelp.Location = new System.Drawing.Point(358, 189);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(75, 23);
+            this.btnHelp.TabIndex = 2;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // ReadContents
             // 
@@ -171,5 +184,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

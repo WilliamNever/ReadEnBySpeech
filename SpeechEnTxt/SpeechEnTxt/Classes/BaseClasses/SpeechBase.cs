@@ -33,9 +33,14 @@ namespace SpeechEnTxt.Classes.BaseClasses
         public virtual void SetSpeachInit(SpeechConfig Config)
         {
             sConfig = Config;
-            ss.SelectVoice(sConfig.VoiceName);
+            SetSelectVoice(sConfig.VoiceName);
             ss.Rate = sConfig.Rate;
             ss.Volume = sConfig.Volume;
+        }
+
+        public virtual void SetSelectVoice(string VoiceName)
+        {
+            ss.SelectVoice(VoiceName);
         }
 
         public virtual void Read(PromptBuilder pmpt)
