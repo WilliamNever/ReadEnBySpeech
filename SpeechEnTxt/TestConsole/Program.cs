@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Speech.Synthesis;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TestConsole
@@ -11,8 +12,11 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            TestToSound(args);
+            //TestToSound(args);
+            string aaa = "aaabbbccc";
 
+            Regex reg = new Regex("ccc");
+            var tst = reg.Split(aaa);
             Console.WriteLine(Environment.NewLine);
 
             Console.WriteLine("Any key to exit......");
