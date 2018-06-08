@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechEnTxt", "SpeechEnTxt\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{319D56BD-B498-4535-9948-7DDA4154CA1F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SpeechSetup", "SpeechSetup\SpeechSetup.vdproj", "{BBDD6C7B-A737-4C75-98B3-115BC048EA13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{319D56BD-B498-4535-9948-7DDA4154CA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{319D56BD-B498-4535-9948-7DDA4154CA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{319D56BD-B498-4535-9948-7DDA4154CA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBDD6C7B-A737-4C75-98B3-115BC048EA13}.Debug|Any CPU.ActiveCfg = Debug
+		{BBDD6C7B-A737-4C75-98B3-115BC048EA13}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
