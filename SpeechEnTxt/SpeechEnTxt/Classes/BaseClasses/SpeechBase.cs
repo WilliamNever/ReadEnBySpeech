@@ -45,6 +45,7 @@ namespace SpeechEnTxt.Classes.BaseClasses
 
         public virtual void Read(PromptBuilder pmpt)
         {
+            pmpt.Culture = ss.Voice.Culture;
             ss.SpeakAsync(pmpt);
         }
 
