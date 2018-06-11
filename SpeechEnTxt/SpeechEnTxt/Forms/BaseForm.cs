@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpeechEnTxt.Classes.Params;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SpeechEnTxt.Forms
 {
-    public delegate void ShowMessage(string msg);
+    public delegate void ShowMessage(string msg, EnShowMessagePlaces Place);
     public partial class BaseForm : Form
     {
         public ShowMessage PopupMessage;
@@ -20,9 +21,12 @@ namespace SpeechEnTxt.Forms
             PopupMessage = new ShowMessage(ShowMessageBox);
         }
 
-        public void ShowMessageBox(string Msg)
+        public virtual void ShowMessageBox(string Msg, EnShowMessagePlaces Place)
         {
-            MessageBox.Show(this, Msg);
+            if ((Place & EnShowMessagePlaces.Popup) == EnShowMessagePlaces.Popup)
+            {
+                MessageBox.Show(this, Msg);
+            }
         }
     }
 }

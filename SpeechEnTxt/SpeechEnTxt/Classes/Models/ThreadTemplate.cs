@@ -61,7 +61,8 @@ namespace SpeechEnTxt.Classes.Models
         public void OverRec()
         {
             RecordControl?.Stop();
-            rrController.InvokeForm.Invoke(rrController.InvokeForm.PopupMessage, "Record Over!");
+            rrController.InvokeForm.Invoke(rrController.InvokeForm.PopupMessage
+                , $"Record Over! - {DateTime.Now.ToString()}", EnShowMessagePlaces.Popup | EnShowMessagePlaces.StatusBar);
         }
 
         public void Read()
@@ -178,6 +179,8 @@ namespace SpeechEnTxt.Classes.Models
                         words = txt.Split(' ');
                     }
                     ReadWriteTxt(ReadControl, words);
+                    rrController.InvokeForm.Invoke(rrController.InvokeForm.PopupMessage
+                        , $"Finish Reading! - {DateTime.Now.ToString()}", EnShowMessagePlaces.StatusBar);
                     break;
                 #endregion
                 case EnCurrentContent.File:
@@ -201,8 +204,10 @@ namespace SpeechEnTxt.Classes.Models
                             }
                         }
                     }
+                    rrController.InvokeForm.Invoke(rrController.InvokeForm.PopupMessage
+                        , $"Finish Reading! - {DateTime.Now.ToString()}", EnShowMessagePlaces.StatusBar);
                     break;
-                    #endregion
+                #endregion
                 default:
                     break;
             }
