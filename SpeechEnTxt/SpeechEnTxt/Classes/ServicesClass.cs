@@ -39,6 +39,7 @@ namespace SpeechEnTxt.Classes
 
         public void Read(IReadContent rContentClass, SpeechConfig config)
         {
+            InvokeForm.ShowMessageBox($"Prepare for Reading! - {DateTime.Now.ToString()}", EnShowMessagePlaces.StatusBar);
             var readContents = rContentClass.GetReadingPart();
             switch (readContents.CurrentContentType)
             {
@@ -53,6 +54,7 @@ namespace SpeechEnTxt.Classes
                     Exit();
                     thrRun = new ThreadTemplate(tmpParam);
                     thrRun.Read();
+                    InvokeForm.ShowMessageBox($"Reading Now! - {DateTime.Now.ToString()}", EnShowMessagePlaces.StatusBar);
                     break;
                 case Params.EnCurrentContent.NotSelected:
                 default:
@@ -66,14 +68,21 @@ namespace SpeechEnTxt.Classes
             {
                 thrRun.Stop();
             }
+            InvokeForm.ShowMessageBox($"Stop Reading! - {DateTime.Now.ToString()}", EnShowMessagePlaces.StatusBar);
         }
 
         public void PauseOrResume(bool isPause)
         {
             if (isPause)
+            {
                 thrRun?.Pause();
+                InvokeForm.ShowMessageBox($"Pause! - {DateTime.Now.ToString()}", EnShowMessagePlaces.StatusBar);
+            }
             else
+            {
                 thrRun?.Resume();
+                InvokeForm.ShowMessageBox($"Resume - {DateTime.Now.ToString()}", EnShowMessagePlaces.StatusBar);
+            }
         }
         public void SetVolume(int volume)
         {
