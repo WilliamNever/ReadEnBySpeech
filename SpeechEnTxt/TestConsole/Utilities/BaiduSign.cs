@@ -57,6 +57,10 @@ namespace TestConsole.Utilities
                 p.toString() + ""."" + (p ^ m)
             }
 
+public static function tryConvert(r) {
+return r;
+}
+
 ";
 
 

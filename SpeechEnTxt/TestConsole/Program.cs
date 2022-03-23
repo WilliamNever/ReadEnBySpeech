@@ -32,6 +32,9 @@ namespace TestConsole
 
         private static void TestJsInvoke()
         {
+            string tss = "\u73af\u5883";
+            string rssd = ((char)int.Parse("73af", System.Globalization.NumberStyles.HexNumber)).ToString();
+
             //HttpWebRequest httpWeb = new WebClient();
             //var wc = new WebClient();
             //wc.Encoding = Encoding.UTF8;
@@ -55,13 +58,49 @@ namespace TestConsole
             var handler = new HttpClientHandler() { UseCookies = true };
             handler.CookieContainer = cookieContainer;
             HttpClient client = new HttpClient(handler);//
+            client.DefaultRequestHeaders.AcceptEncoding.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("UTF-8"));
             var strRes = client.GetAsync(uri).Result.Content.ReadAsStringAsync().Result;
             List<Cookie> cookies = cookieContainer.GetCookies(uri).Cast<Cookie>().ToList();
 
             var strResRe = client.GetAsync(uri).Result.Content.ReadAsStringAsync().Result;
             List<Cookie> cookiesRe = cookieContainer.GetCookies(uri).Cast<Cookie>().ToList();
 
+            string msgs = "from=en&to=zh&query=environment&transtype=realtime&simple_means_flag=3&sign=603378.907203&token=0acc583ba7d5580926b8cadf802a6f38&domain=common";
+            string token = "";
+            //string cookValue = "";
+            //client.DefaultRequestHeaders.Add("Cookie", cookValue);
+
+            MultipartFormDataContent content = new MultipartFormDataContent();
+            content.Add(new StringContent("en"), "from");
+            content.Add(new StringContent("zh"), "to");
+            content.Add(new StringContent("environment"), "query");
+            content.Add(new StringContent("realtime"), "transtype");
+            content.Add(new StringContent("3"), "simple_means_flag");
+
+            content.Add(new StringContent("603378.907203"), "sign");
+            content.Add(new StringContent(token), "token");
+            content.Add(new StringContent("common"), "domain");
+            //content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded")
+            //{
+            //    CharSet = "UTF-8",
+            //};
+
+            var tmp = client.PostAsync("https://fanyi.baidu.com/v2transapi?from=en&to=zh"
+                , content
+                ).Result.Content.ReadAsStringAsync().Result;
+
+            Regex reg = new Regex(@"[\\]+u(\w{4})");
+            var rslt = reg.Replace(tmp, delegate (Match m)
+            {
+                string hexStr = m.Groups[1].Value;
+                string charStr = ((char)int.Parse(hexStr, System.Globalization.NumberStyles.HexNumber)).ToString();
+                return charStr;
+            });
+
             BaiduSign bs = new BaiduSign();
+            //var rslt = bs.GetJsMethd("tryConvert", new object[] { tmp });
+            Console.WriteLine(rslt);
+
             var ss = bs.GetJsMethd("exx", new object[] { "methodName" });
         }
 
